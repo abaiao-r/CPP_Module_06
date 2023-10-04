@@ -6,7 +6,7 @@
 #    By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 15:08:37 by abaiao-r          #+#    #+#              #
-#    Updated: 2023/10/04 21:24:15 by abaiao-r         ###   ########.fr        #
+#    Updated: 2023/10/04 22:13:23 by abaiao-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ OBJDIR = objs
 # Source Files
 
 SRCS =  $(SRCDIR)/main.cpp \
-		$(SRCDIR)/ScalarConverter.cpp
+		$(SRCDIR)/Serialize.cpp
 		
 OBJS = 	$(SRCS:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 # Targets
-NAME = Conversion_of_scalar_types
+NAME = Serialization
 
 all: 	$(NAME)
 
@@ -43,30 +43,7 @@ run:	fclean all
 re:		fclean all
 
 test: 	all
-		./$(NAME) 0
-		./$(NAME) 42
-		./$(NAME) 42.0f
-		./$(NAME) 42.0
-		./$(NAME) nan
-		./$(NAME) nanf
-		./$(NAME) inf
-		./$(NAME) inff
-		./$(NAME) -inf
-		./$(NAME) -inff
-		./$(NAME) -0
-		./$(NAME) -0.0
-		./$(NAME) -0.0f
-		./$(NAME) 0.0
-		./$(NAME) 0.0f
-		./$(NAME) 0.f
-		./$(NAME) 33.4321d
-		./$(NAME) 33.4321f
-		./$(NAME) 33.4321
-		./$(NAME) 21212121
-		./$(NAME) 2147483647
-		./$(NAME) 2147483648
-		./$(NAME) 2147483648.0
-		./$(NAME) 2147483648.0f
+		./$(NAME)
 
 
 valgrind: fclean all
