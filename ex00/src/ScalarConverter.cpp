@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:30 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 03:42:43 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:18:40 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ char ScalarConverter::literalToChar(std::string literal)
     {
         std::cout << "char: " << "'" << c << "'" << std::endl;
         std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(c) << "f" << std::endl;
-        std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(c) << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
     }
     else
     {
@@ -187,7 +187,7 @@ char ScalarConverter::literalToChar(std::string literal)
 /*literalToInt: converts a literal to an int*/
 int ScalarConverter::literalToInt(std::string literal)
 {
-    long long i;
+    long i;
 
     i = std::atoll(literal.c_str());
     std::cout << "char: ";
@@ -204,12 +204,12 @@ int ScalarConverter::literalToInt(std::string literal)
         std::cout << "impossible" << std::endl;
 
     if (std::abs(i) <= std::numeric_limits<float>::max())
-        std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(i) << "f" << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(i) << "f" << std::endl;
     else
         std::cout << "impossible" << std::endl;
 
     if (std::abs(i) <= std::numeric_limits<double>::max())
-        std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(i) << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(i) << std::endl;
     else
         std::cout << "impossible" << std::endl;
 
@@ -269,7 +269,7 @@ float ScalarConverter::literalToFloat(std::string literal)
         std::cout << "double: inf" << std::endl;
         return (0);
     }
-    f = std::atof(literal.c_str());
+    f = std::strtof(literal.c_str(), NULL);
     
     std::cout << "char: ";
     if ((f >= 0 && f < 32) || (f == 127))
@@ -280,15 +280,20 @@ float ScalarConverter::literalToFloat(std::string literal)
         std::cout << "'" << static_cast<char>(f) << "'" << std::endl;
 
     if (f <= std::numeric_limits<int>::max() && f >= std::numeric_limits<int>::min())
-        std::cout << "int: " << f << std::endl;
+        std::cout << "int: " << static_cast<int>(f) << std::endl;
     else
         std::cout << "impossible" << std::endl;
     if (std::abs(f) <= std::numeric_limits<float>::max() && std::abs(f) >= std::numeric_limits<float>::min())
-        std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(f) << "f" << std::endl;
+    {
+        if (static_cast<float>(f) == static_cast<int>(f))
+            std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f" << std::endl;
+        else
+            std::cout << "float: " << static_cast<float>(f) << "f" << std::endl;
+    }
     else
         std::cout << "impossible" << std::endl;
     if (std::abs(f) <= std::numeric_limits<double>::max() && std::abs(f) >= std::numeric_limits<double>::min())
-        std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(f) << std::endl;
+        std::cout << "double: " << static_cast<double>(f) << std::endl;
     else
         std::cout << "impossible" << std::endl;
 
@@ -334,15 +339,20 @@ double ScalarConverter::literalToDouble(std::string literal)
         std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
 
     if (d <= std::numeric_limits<int>::max() && d >= std::numeric_limits<int>::min())
-        std::cout << "int: " << d << std::endl;
+        std::cout << "int: " << static_cast<int>(d) << std::endl;
     else
         std::cout << "impossible" << std::endl;
     if (std::abs(d) <= std::numeric_limits<float>::max() && std::abs(d) >= std::numeric_limits<float>::min())
-        std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(d) << "f" << std::endl;
+    {
+        if (static_cast<float>(d) == static_cast<int>(d))
+            std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
+        else
+            std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
+    }
     else
         std::cout << "impossible" << std::endl;
     if (std::abs(d) <= std::numeric_limits<double>::max() && std::abs(d) >= std::numeric_limits<double>::min())
-        std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(d) << std::endl;
+        std::cout << "double: " << static_cast<double>(d) << std::endl;
     else
         std::cout << "impossible" << std::endl;
 
