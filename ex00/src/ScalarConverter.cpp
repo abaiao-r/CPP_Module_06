@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:30 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 16:18:40 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:33:13 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ std::string ScalarConverter::detectType(std::string literal)
                     i++;
                     continue;
                 }
-                else if (literal[i] == 'f' && literal[i + 1] == '\0')
+                else if (literal[i] == 'f' && dot_count == 1 && literal[i + 1] == '\0')
                 {
                     type = "float";
                     return (type);
@@ -105,7 +105,7 @@ std::string ScalarConverter::detectType(std::string literal)
                     type = "Unknown type";
                     return (type);
                 }
-                else if (literal[i] == 'd' && literal[i + 1] == '\0')
+                else if (literal[i] == 'd'  && dot_count == 1 && literal[i + 1] == '\0')
                 {
                     type = "double";
                     return (type);
@@ -215,30 +215,6 @@ int ScalarConverter::literalToInt(std::string literal)
 
     return static_cast<int>(i);
 }
-    /* int i;
-
-    i = std::atoi(literal.c_str());
-    std::cout << "char: ";
-    if ((i >= 0 && i < 32) || (i == 127))
-        std::cout << "Non displayable" << std::endl;
-    else if (i < 0 || i > 127)
-        std::cout << "impossible" << std::endl;
-    else 
-        std::cout << "'" << static_cast<char>(i) << "'" << std::endl;
-    if (i <= std::numeric_limits<int>::max() && i >= std::numeric_limits<int>::min())
-        std::cout << "int: " << i << std::endl;
-    else
-        std::cout << "impossible" << std::endl;
-    if (i <= std::numeric_limits<float>::max() && i >= std::numeric_limits<float>::min())
-        std::cout << "float: " << std::fixed << std::setprecision(2) << static_cast<float>(i) << "f" << std::endl;
-    else
-        std::cout << "impossible" << std::endl;
-    if (i <= std::numeric_limits<double>::max() && i >= std::numeric_limits<double>::min())
-        std::cout << "double: " << std::fixed << std::setprecision(2) << static_cast<double>(i) << std::endl;
-    else
-        std::cout << "impossible" << std::endl;
-    return (i);
-} */
 
 /*literalToFloat: converts a literal to a float*/
 float ScalarConverter::literalToFloat(std::string literal)
