@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:30 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 20:29:48 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:52:28 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,7 +328,6 @@ void ScalarConverter::convert(std::string literal)
     std::string type;
 
     type = ScalarConverter::detectType(literal);
-    std::cout << "type: " << type << "\n\n\n" << std::endl;
     if (type == "char")
         ScalarConverter::literalToChar(literal);
     else if (type == "int")

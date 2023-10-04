@@ -6,7 +6,7 @@
 #    By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 15:08:37 by abaiao-r          #+#    #+#              #
-#    Updated: 2023/10/04 20:02:41 by abaiao-r         ###   ########.fr        #
+#    Updated: 2023/10/04 21:08:29 by abaiao-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,31 @@ run:	fclean all
 re:		fclean all
 
 test: 	all
-		./$(NAME)
+		./$(NAME) 0
+		./$(NAME) 42
+		./$(NAME) 42.0f
+		./$(NAME) 42.0
+		./$(NAME) nan
+		./$(NAME) nanf
+		./$(NAME) inf
+		./$(NAME) inff
+		./$(NAME) -inf
+		./$(NAME) -inff
+		./$(NAME) -0
+		./$(NAME) -0.0
+		./$(NAME) -0.0f
+		./$(NAME) 0.0
+		./$(NAME) 0.0f
+		./$(NAME) 0.f
+		./$(NAME) 33.4321d
+		./$(NAME) 33.4321f
+		./$(NAME) 33.4321
+		./$(NAME) 21212121
+		./$(NAME) 2147483647
+		./$(NAME) 2147483648
+		./$(NAME) 2147483648.0
+		./$(NAME) 2147483648.0f
+
 
 valgrind: fclean all
 		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
