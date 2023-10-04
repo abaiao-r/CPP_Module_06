@@ -6,27 +6,23 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 21:28:57 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 00:37:25 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:53:31 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SCALARCONVERTER_HPP
 #define SCALARCONVERTER_HPP
 
-#include <iostream>
-#include <string>
-#include <iomanip>
-#include <cstdlib>
-#include <climits>
-#include <cfloat>
+#include <iostream> // to use cout
+#include <string> // to use string
+#include <iomanip> // to use setprecision
+#include <cstdlib> // to use atof
+#include <climits> // to use INT_MAX
+#include <cfloat> // to use FLT_MAX
 #include <cmath>
-#include <limits>
-#include <sstream>
-#include <exception>
+#include <limits> // to use numeric_limits
 #include "colours.hpp"
 
-
-//statc class
 class ScalarConverter
 {
    private:
@@ -39,22 +35,17 @@ class ScalarConverter
 
       static void convert(std::string literal);
       static std::string detectType(std::string literal);
-      static char literalToChar(std::string literal);
-      static int literalToInt(std::string literal);
-      static float literalToFloat(std::string literal);
-      static double literalToDouble(std::string literal);
-      static int charToInt(char c);
-      static int floatToInt(float f);
-      static int doubleToInt(double d);
-      static char intToChar(int i);
-      static char floatToChar(float f);
-      static char doubleToChar(double d);
-      static float intToFloat(int i);
-      static float charToFloat(char c);
-      static float doubleToFloat(double d);
-      static double intToDouble(int i);
-      static double charToDouble(char c);
-      static double floatToDouble(float f);
+      static bool handlePseudoLiterals(std::string literal);
+      static void literalToChar(std::string literal);
+      static void literalToInt(std::string literal);
+      static void literalToFloat(std::string literal);
+      static void literalToDouble(std::string literal);
+
+      static bool isChar(std::string literal);
+      static int isPseudoLiteral(std::string literal);
+      static bool isInt(std::string literal);
+      static bool isFloat(std::string literal);
+      static bool isDouble(std::string literal);
 };
 
 #endif
