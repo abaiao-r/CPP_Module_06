@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:53:38 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/05 00:40:34 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/05 16:27:23 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ Base *generate(void)
 
     std::srand(clock());
     r = std::rand();
-    if (r % 3 == 0)
+    if (r % 4 == 0)
         return (new A());
-    else if (r % 3 == 1)
+    else if (r % 4 == 1)
         return (new B());
-    else
+    else if (r % 4 == 2)
         return (new C());
+    else
+        return (new Base());
 }
 
 /* identify() identifies the class of the object passed as parameter by using
@@ -43,46 +45,49 @@ void identify(Base *p)
         std::cout << BOLDGREEN << "B" << RESET << std::endl;
     else if (dynamic_cast<C*>(p))
         std::cout << BOLDGREEN << "C" << RESET << std::endl;
+    else
+        std::cerr << BOLDRED << "Unknown class" << RESET << std::endl;
 }
 
 /* identify() identifies the class of the object passed as parameter by using
  * dynamic_cast. Dynamic cast throws an exception if the cast fails. */
 void identify(Base &p)
 {
-    Base temp;
 
-    temp = p;
     try
     {
-        temp = dynamic_cast<A&>(p);
-        std::cout << BOLDGREEN << "Object is of type A" << RESET << std::endl;
+        (void)dynamic_cast<A&>(p);
+        std::cout << BOLDGREEN << "A" << RESET << std::endl;
     }
     catch(const std::exception& e)
     {
-        (void)e;
-    }
-    try
-    {
-        temp = dynamic_cast<B&>(p);
-        std::cout << BOLDGREEN << "Object is of type B" << RESET << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        (void)e;
-    }
-    try
-    {
-        temp = dynamic_cast<C&>(p);
-        std::cout << BOLDGREEN << "Object is of type C" << RESET << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        (void)e;
+        try
+        {
+            (void)dynamic_cast<B&>(p);
+            std::cout << BOLDGREEN << "B" << RESET << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            try
+            {
+                (void)dynamic_cast<C&>(p);
+                std::cout << BOLDGREEN << "C" << RESET << std::endl;
+            }
+            catch(const std::exception& e)
+            {
+                (void)e;
+                std::cerr << BOLDRED << "Unknown class" << RESET << std::endl;
+            }
+        }
     }
 }
 
 /* main() generates a random class derived from Base and identifies it by
- * pointer and by reference. */
+ * pointer and by reference. It is usefull to see the difference between
+ * dynamic_cast and reinterpret_cast.  we can see that dynamic_cast is
+ * safer than reinterpret_cast because it throws an exception if the cast
+ * fails.
+ */
 int main(void)
 {
 
@@ -94,6 +99,7 @@ int main(void)
         std::cout << BOLDYELLOW << "Identify by reference: " << RESET;
         identify(*p);
         delete p;
+        std::cout << "-------------------------------------\n\n\n" << std::endl;
     }
     std::cout << "--------------------------------------------" << std::endl;
 

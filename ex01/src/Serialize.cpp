@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:35:42 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 21:47:14 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:49:03 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ Serializer &Serializer::operator=(Serializer const &src)
 
 /* serialize() takes a pointer to Data as a parameter and returns a uintptr_t. 
  * The function should cast the pointer to uintptr_t and return it.
+ * reinterpret_cast is used to convert a pointer into an integer type.
  */
 uintptr_t Serializer::serialize(Data *ptr)
 {
