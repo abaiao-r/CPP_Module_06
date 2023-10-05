@@ -6,7 +6,7 @@
 /*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 18:44:55 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 16:26:27 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:19:24 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int main(int argc, char **argv)
         return (1);
     }
     ScalarConverter::convert(argv[1]);
+    std::cout << "-------------------------\n\n" << std::endl;
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andrefrancisco <andrefrancisco@student.    +#+  +:+       +#+        */
+/*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:30 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/05 13:28:18 by andrefranci      ###   ########.fr       */
+/*   Updated: 2023/10/05 15:36:59 by abaiao-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ void ScalarConverter::literalToInt(std::string literal)
         std::cout << "impossible" << std::endl;
     else 
         std::cout << "'" << static_cast<char>(i) << "'" << std::endl;
-    if (i <= std::numeric_limits<int>::max() && i >= std::numeric_limits<int>::min())
+    if (i <= std::numeric_limits<long>::max() && i >= std::numeric_limits<long>::min() &&  literal.length() < 10)
         std::cout << "int: " << i << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
@@ -263,14 +263,11 @@ void ScalarConverter::literalToFloat(std::string literal)
         std::cout << "impossible" << std::endl;
     else 
         std::cout << "'" << static_cast<char>(f) << "'" << std::endl;
-    if (f <= std::numeric_limits<int>::max() && f >= std::numeric_limits<int>::min())
+    if (f <= std::numeric_limits<long>::max() && f >= std::numeric_limits<long>::min() &&  literal.length() < 10)
         std::cout << "int: " << static_cast<int>(f) << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    std::cout << "std::abs(f): " << std::abs(f) << std::endl;
-    std::cout << "std::numeric_limits<float>::max(): " << std::numeric_limits<float>::max() << std::endl;
-    std::cout << "std::numeric_limits<float>::min(): " << std::numeric_limits<float>::min() << std::endl;
-    if (std::abs(f) f >= std::numeric_limits<float>::min() && std::abs(f) f <= std::numeric_limits<float>::max())
+    if (std::fabs(f) <= std::numeric_limits<float>::max())
     {
         if (static_cast<float>(f) == static_cast<int>(f))
             std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f" << std::endl;
@@ -279,7 +276,7 @@ void ScalarConverter::literalToFloat(std::string literal)
     }
     else
         std::cout << "float: impossible" << std::endl;
-    if (std::abs(f) <= std::numeric_limits<double>::max() && std::abs(f) >= std::numeric_limits<double>::min())
+    if (std::fabs(f) <= std::numeric_limits<double>::max())
         std::cout << "double: " << static_cast<double>(f) << std::endl;
     else
         std::cout << "double: impossible" << std::endl;
@@ -301,11 +298,11 @@ void ScalarConverter::literalToDouble(std::string literal)
         std::cout << "impossible" << std::endl;
     else 
         std::cout << "'" << static_cast<char>(d) << "'" << std::endl;
-    if (d <= std::numeric_limits<int>::max() && d >= std::numeric_limits<int>::min())
+    if (d <= std::numeric_limits<long>::max() && d >= std::numeric_limits<long>::min() &&  literal.length() < 10)
         std::cout << "int: " << static_cast<int>(d) << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    if (std::abs(d) <= std::numeric_limits<float>::max() && std::abs(d) >= std::numeric_limits<float>::min())
+    if (std::abs(d) <= std::numeric_limits<float>::max())
     {
         if (static_cast<float>(d) == static_cast<int>(d))
             std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(d) << "f" << std::endl;
@@ -314,7 +311,7 @@ void ScalarConverter::literalToDouble(std::string literal)
     }
     else
         std::cout << "float: impossible" << std::endl;
-    if (std::abs(d) <= std::numeric_limits<double>::max() && std::abs(d) >= std::numeric_limits<double>::min())
+    if (std::abs(d) <= std::numeric_limits<double>::max())
         std::cout << "double: " << static_cast<double>(d) << std::endl;
     else
         std::cout << "double: impossible" << std::endl;
