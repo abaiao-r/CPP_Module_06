@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andrefrancisco <andrefrancisco@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/03 17:06:30 by abaiao-r          #+#    #+#             */
-/*   Updated: 2023/10/04 20:52:28 by abaiao-r         ###   ########.fr       */
+/*   Updated: 2023/10/05 13:28:18 by andrefranci      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,7 +267,10 @@ void ScalarConverter::literalToFloat(std::string literal)
         std::cout << "int: " << static_cast<int>(f) << std::endl;
     else
         std::cout << "int: impossible" << std::endl;
-    if (std::abs(f) <= std::numeric_limits<float>::max() && std::abs(f) >= std::numeric_limits<float>::min())
+    std::cout << "std::abs(f): " << std::abs(f) << std::endl;
+    std::cout << "std::numeric_limits<float>::max(): " << std::numeric_limits<float>::max() << std::endl;
+    std::cout << "std::numeric_limits<float>::min(): " << std::numeric_limits<float>::min() << std::endl;
+    if (std::abs(f) f >= std::numeric_limits<float>::min() && std::abs(f) f <= std::numeric_limits<float>::max())
     {
         if (static_cast<float>(f) == static_cast<int>(f))
             std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(f) << "f" << std::endl;

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abaiao-r <abaiao-r@student.42.fr>          +#+  +:+       +#+         #
+#    By: andrefrancisco <andrefrancisco@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/21 15:08:37 by abaiao-r          #+#    #+#              #
-#    Updated: 2023/10/04 21:24:15 by abaiao-r         ###   ########.fr        #
+#    Updated: 2023/10/05 12:47:33 by andrefranci      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Compiler settings
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -g #-fstandalone-debug #-fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -Wshadow -std=c++98 -g #-fsanitize=address
 
 # Directories
 SRCDIR = src
@@ -70,7 +70,31 @@ test: 	all
 
 
 valgrind: fclean all
-		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 0
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 42
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 42.0f
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 42.0
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) nan
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) nanf
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) inf
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) inff
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) -inf
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) -inff
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) -0
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) -0.0
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) -0.0f
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 0.0
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 0.0f
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 0.f
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 33.4321d
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 33.4321f
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 33.4321
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 21212121
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 2147483647
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 2147483648
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 2147483648.0
+		valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) 2147483648.0f
+		
 
 $(NAME): 	$(OBJS)
 			$(CXX) $(OBJS) $(CXXFLAGS) -o  $(NAME) 
